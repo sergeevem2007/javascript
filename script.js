@@ -1,9 +1,9 @@
-let money = 100;
-const income = '200';
-const addExpenses = 500; 
+let money;
+let income;
+let addExpenses; 
 let deposit;
-const mission = true;
-let period = 5;
+let mission;
+let period;
 
-console.log('количество денег' + money);
+console.log('скрипт к первому уроку');
 alert('Привет Мир!');
