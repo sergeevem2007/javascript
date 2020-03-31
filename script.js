@@ -21,17 +21,14 @@ showTypeOf(money);
 showTypeOf(income);
 showTypeOf(deposit);
 
-money = prompt('Ваш месячный доход?');
-money *= 1;
+money = +prompt('Ваш месячный доход?');
 console.log(money);
 addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
 deposit = confirm('Еcли у вас есть депозит в банке, нажмите "ОК", если нет - "Отмена"');
 expenses1 = prompt('Введите обязательную статью расходов?');
-amount1 = prompt('Во сколько это обойдется?');
-amount1 *= 1;
+amount1 = +prompt('Во сколько это обойдется?');
 expenses2 = prompt('Введите обязательную статью расходов?');
-amount2 = prompt('Во сколько это обойдется?');
-amount2 *= 1;
+amount2 = +prompt('Во сколько это обойдется?');
 
 const getStatusIncome = function () {
   if (budgetDay <= 0) {
