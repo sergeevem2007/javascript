@@ -26,6 +26,7 @@ let start = function() {
 start();
 
 console.log(money);
+console.log(typeof money);
 addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
 console.log(addExpenses.toLowerCase().split(','));
 
@@ -33,11 +34,15 @@ deposit = confirm('Еcли у вас есть депозит в банке, на
 
 const getExpensesMonth = function () {
   let sum = 0;
+  let question = 0;
   for (let i = 0; i < 2; i++) {
-    
-    expenses[i] = prompt('Введите обязательную статью расходов?');
-    sum += +prompt('Во сколько это обойдется?');
-  }  
+    expenses[i] = prompt('Введите обязательную статью расходов?');   
+    do {
+      question = prompt('Во сколько это обойдется?');
+    }
+    while (!isNumber(question));
+    sum += +question;
+  }
   console.log(expenses);
   return sum;
 };
