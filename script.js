@@ -14,13 +14,6 @@ let amount2;
 let timeMission;
 let accumulatedMonth;
 
-const showTypeOf = function (data) {
-  console.log(typeof(data));
-}
-showTypeOf(money);
-showTypeOf(income);
-showTypeOf(deposit);
-
 money = +prompt('Ваш месячный доход?');
 console.log(money);
 addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
@@ -33,20 +26,14 @@ amount2 = +prompt('Во сколько это обойдется?');
 const getStatusIncome = function () {
   if (budgetDay <= 0) {
     return ('Что-то пошло не так');
+  } else if (budgetDay <= 600) {
+    return ('К сожалению у вас уровень дохода ниже среднего');
+  } else if (budgetDay <= 1200) {
+    return ('У вас средний уровень дохода');
   } else {
-    if (budgetDay <= 600) {
-      return ('К сожалению у вас уровень дохода ниже среднего');
-    } else {
-      if (budgetDay <= 1200) {
-        return ('У вас средний уровень дохода');
-      } else {
-        return ('У вас высокий уровень дохода');
-      }
-    }
+    return ('У вас высокий уровень дохода');
   }
 }
-
-console.log(getStatusIncome());
 
 const getExpensesMonth = function () {
   return amount1 + amount2;
@@ -71,3 +58,12 @@ timeMission = Math.ceil( mission / getAccumulatedMonth() );
 console.log('Цель будет достигнута через ' + timeMission + ' месяцев');
 budgetDay = Math.floor( getAccumulatedMonth() / 30 );
 console.log('Бюджет на день : ' + budgetDay);
+console.log(getStatusIncome());
+
+const showTypeOf = function (data) {
+  console.log(typeof(data));
+}
+
+showTypeOf(money);
+showTypeOf(income);
+showTypeOf(deposit);
