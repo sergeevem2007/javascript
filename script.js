@@ -47,14 +47,13 @@ const getExpensesMonth = function () {
   return sum;
 };
 
+let expensesAmount = getExpensesMonth();
+
+console.log('Расходы за месяц ' + expensesAmount);
 
 const getAccumulatedMonth = function () {
   return money - expensesAmount;
 };
-
-let expensesAmount = getExpensesMonth();
-
-console.log('Расходы за месяц ' + expensesAmount);
 
 accumulatedMonth = getAccumulatedMonth();
 
