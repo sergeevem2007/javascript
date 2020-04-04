@@ -72,11 +72,12 @@ appData.asking();
 appData.getExpensesMonth();
 appData.getBudget();
 
-
-
 console.log(appData.budget);
 console.log('Бюджет на месяц ' + appData.budgetMonth);
 console.log('Бюджет на день : ' + appData.budgetDay);
 console.log(appData.getTargetMonth());
 console.log(appData.getStatusIncome());
-console.log(appData);
+console.log('Наша программа включает в себя данные:');
+for (let key in appData) {
+  console.log(key + ' : ' + appData[key]);
+}
