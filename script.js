@@ -12,17 +12,17 @@ let start = function() {
 start();
 
 let appData = {
-  budget : +money,
-  budgetDay : 0,
-  budgetMonth : 0,
-  expensesMonth : 0,
-  income : {},
-  addIncome : [],
-  expenses : {},
-  addExpenses : [],
-  deposit : false,
-  mission : 50000,
-  period : 3,
+  budget: +money,
+  budgetDay: 0,
+  budgetMonth: 0,
+  expensesMonth: 0,
+  income: {},
+  addIncome: [],
+  expenses: {},
+  addExpenses: [],
+  deposit: false,
+  mission: 50000,
+  period: 3,
   asking : function() {
     let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
         appData.addExpenses = addExpenses.toLowerCase().split(',');
@@ -37,18 +37,18 @@ let appData = {
         appData.expenses[questionExpenses] = +cost;
       }
   },
-  getExpensesMonth : function () {
+  getExpensesMonth : function() {
     for (let key in appData.expenses) {
       appData.expensesMonth += appData.expenses[key];
     }
     return appData.expensesMonth;
   },
-  getBudget : function () {
+  getBudget : function() {
     appData.budgetMonth = appData.budget - appData.expensesMonth;
     appData.budgetDay = Math.floor(appData.budgetMonth / 30);
     return appData.budgetMonth , appData.budgetDay;
   },
-  getTargetMonth : function () {
+  getTargetMonth : function() {
     let result = Math.ceil( appData.mission / appData.budgetMonth );
     if (result <= 0) {
       return ('Цель не будет достигнута');
@@ -56,7 +56,7 @@ let appData = {
       return ('Цель будет достигнута через ' + result + ' месяцев');
     }
   },
-  getStatusIncome : function () {
+  getStatusIncome : function() {
     if (appData.budgetDay <= 0) {
       return ('Что-то пошло не так');
     } else if (appData.budgetDay <= 600) {
@@ -79,5 +79,15 @@ console.log(appData.getTargetMonth());
 console.log(appData.getStatusIncome());
 console.log('Наша программа включает в себя данные:');
 for (let key in appData) {
-  console.log(key + ' : ' + appData[key]);
+  console.log(key + ': ' + appData[key]);
+  if (key === 'income') {
+    for (let item in appData.income) {
+      console.log(item + ': ' + appData.income[item]);
+    }
+  }
+  if (key === 'expenses') {
+    for (let value in appData.expenses) {
+      console.log(value + ': ' + appData.expenses[value]);
+    }
+  }
 }
