@@ -3,6 +3,9 @@ let money;
 let isNumber = function(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
     };
+let isNull = function(n) {
+  return isFinite(n) || n === null;
+    };
 let start = function() {
   do {
     money = prompt('Ваш месячный доход?');
@@ -30,8 +33,9 @@ let appData = {
       let itemIncome , cashIncome;
       do {
         itemIncome = prompt('Какой у вас есть дополнительный заработок?');
+        console.log(itemIncome);
       }
-      while (isNumber(itemIncome));
+      while (isNumber(itemIncome) || isNull(itemIncome));
       do { cashIncome = prompt('Сколько в месяц зарабатываете?');
       }
       while (!isNumber(cashIncome));
@@ -43,7 +47,7 @@ let appData = {
     do {
       addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
     }
-    while (isNumber(addExpenses));
+    while (isNumber(addExpenses) || isNull(addExpenses));
       appData.addExpenses = addExpenses.toLowerCase().split(', ');
       appData.deposit = confirm('Еcли у вас есть депозит в банке, нажмите "ОК", если нет - "Отмена"');
     let cost, questionExpenses;
@@ -51,7 +55,7 @@ let appData = {
         do {
           questionExpenses = prompt('Введите обязательную статью расходов?');
         }
-        while (isNumber(questionExpenses));   
+        while (isNumber(questionExpenses) || isNull(questionExpenses));   
         do {
           cost = prompt('Во сколько это обойдется?');
         }
@@ -133,6 +137,7 @@ for (let key in appData) {
 
 for (let i = 0; i < appData.addExpenses.length ; i++) {
   appData.addExpenses[i] = ' ' + appData.addExpenses[i].charAt(0).toUpperCase()+appData.addExpenses[i].slice(1);
+  appData.addExpenses[0] = appData.addExpenses[0].slice(1);
 }
 let a = appData.addExpenses.toString();
 console.log(a);
