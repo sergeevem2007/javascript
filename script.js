@@ -132,7 +132,7 @@ for (let key in appData) {
 }
 
 for (let i = 0; i < appData.addExpenses.length ; i++) {
-  appData.addExpenses[i] = appData.addExpenses[i].charAt(0).toUpperCase()+appData.addExpenses[i].slice(1)+' ';
+  appData.addExpenses[i] = ' ' + appData.addExpenses[i].charAt(0).toUpperCase()+appData.addExpenses[i].slice(1);
 }
 let a = appData.addExpenses.toString();
 console.log(a);
