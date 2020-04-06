@@ -135,9 +135,9 @@ for (let key in appData) {
   }
 }
 
-for (let i = 0; i < appData.addExpenses.length ; i++) {
+for (let i = 1; i < appData.addExpenses.length ; i++) {
+  appData.addExpenses[0] = appData.addExpenses[0].charAt(0).toUpperCase()+appData.addExpenses[0].slice(1);
   appData.addExpenses[i] = ' ' + appData.addExpenses[i].charAt(0).toUpperCase()+appData.addExpenses[i].slice(1);
-  appData.addExpenses[0] = appData.addExpenses[0].slice(1);
 }
 let a = appData.addExpenses.toString();
 console.log(a);
