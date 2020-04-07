@@ -12,7 +12,7 @@ let start = function() {
   }
   while (!isNumber(money));
 };
-// start();
+start();
 
 let calculate = document.getElementById('start'),
     incomeAdd = document.getElementsByTagName('button')[0],
