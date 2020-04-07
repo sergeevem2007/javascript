@@ -19,13 +19,13 @@ let calculate = document.getElementById('start'),
     expensesAdd = document.getElementsByTagName('button')[1],
     depositCheck = document.querySelector('#deposit-check'),
     additionalIncomeItem = document.querySelectorAll('.additional_income-item'),
-    budgetMonthValue = document.getElementsByClassName('budget_month-value'),
-    budgetDayValue = document.getElementsByClassName('budget_day-value'),
-    expensesMonthValue = document.getElementsByClassName('expenses_month-value'),
-    additionalIncomeValue = document.getElementsByClassName('additional_income-value'),
-    resultAdditionalExpenses = document.getElementsByClassName('result-additional_expenses'),
-    incomePeriodValue = document.getElementsByClassName('income_period-value'),
-    targetMonthValue = document.getElementsByClassName('target_month-value'),
+    budgetMonthValue = document.getElementsByClassName('budget_month-value')[0],
+    budgetDayValue = document.getElementsByClassName('budget_day-value')[0],
+    expensesMonthValue = document.getElementsByClassName('expenses_month-value')[0],
+    additionalIncomeValue = document.getElementsByClassName('additional_income-value')[0],
+    additionalExpensesValue = document.getElementsByClassName('additional_expenses-value')[0],
+    incomePeriodValue = document.getElementsByClassName('income_period-value')[0],
+    targetMonthValue = document.getElementsByClassName('target_month-value')[0],
     salaryAmount = document.querySelector('.salary-amount'),
     incomeTitle = document.querySelector('input.income-title'),
     incomeAmount = document.querySelector('.income-amount'),
@@ -35,7 +35,7 @@ let calculate = document.getElementById('start'),
     targetAmount = document.querySelector('.target-amount'),
     periodSelect = document.querySelector('.period-select');
 
-console.log(calculate, incomeAdd, expensesAdd, depositCheck, additionalIncomeItem, budgetMonthValue, budgetDayValue, expensesMonthValue, additionalIncomeValue, resultAdditionalExpenses, incomePeriodValue, targetMonthValue, salaryAmount, incomeTitle, incomeAmount, expensesTitle, expensesAmount, additionalExpensesItem, targetAmount, periodSelect);
+console.log(calculate, incomeAdd, expensesAdd, depositCheck, additionalIncomeItem, budgetMonthValue, budgetDayValue, expensesMonthValue, additionalIncomeValue, additionalExpensesValue, incomePeriodValue, targetMonthValue, salaryAmount, incomeTitle, incomeAmount, expensesTitle, expensesAmount, additionalExpensesItem, targetAmount, periodSelect);
 
 let appData = {
   budget: +money,
