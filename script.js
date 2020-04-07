@@ -18,8 +18,7 @@ let calculate = document.getElementById('start'),
     incomeAdd = document.getElementsByTagName('button')[0],
     expensesAdd = document.getElementsByTagName('button')[1],
     depositCheck = document.querySelector('#deposit-check'),
-    additionalIncomeItem1 = document.querySelectorAll('.additional_income-item')[0],
-    additionalIncomeItem2 = document.querySelectorAll('.additional_income-item')[1],
+    additionalIncomeItem = document.querySelectorAll('.additional_income-item'),
     budgetMonthValue = document.getElementsByClassName('budget_month-value'),
     budgetDayValue = document.getElementsByClassName('budget_day-value'),
     expensesMonthValue = document.getElementsByClassName('expenses_month-value'),
@@ -36,7 +35,7 @@ let calculate = document.getElementById('start'),
     targetAmount = document.querySelector('.target-amount'),
     periodSelect = document.querySelector('.period-select');
 
-console.log(calculate, incomeAdd, expensesAdd, depositCheck, additionalIncomeItem1, additionalIncomeItem2, budgetMonthValue, budgetDayValue, expensesMonthValue, additionalIncomeValue, resultAdditionalExpenses, incomePeriodValue, targetMonthValue, salaryAmount, incomeTitle, incomeAmount, expensesTitle, expensesAmount, additionalExpensesItem, targetAmount, periodSelect);
+console.log(calculate, incomeAdd, expensesAdd, depositCheck, additionalIncomeItem, budgetMonthValue, budgetDayValue, expensesMonthValue, additionalIncomeValue, resultAdditionalExpenses, incomePeriodValue, targetMonthValue, salaryAmount, incomeTitle, incomeAmount, expensesTitle, expensesAmount, additionalExpensesItem, targetAmount, periodSelect);
 
 let appData = {
   budget: +money,
