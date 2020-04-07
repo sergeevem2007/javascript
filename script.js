@@ -12,7 +12,31 @@ let start = function() {
   }
   while (!isNumber(money));
 };
-start();
+// start();
+
+let calculate = document.getElementById('start'),
+    incomeAdd = document.getElementsByTagName('button')[0],
+    expensesAdd = document.getElementsByTagName('button')[1],
+    depositCheck = document.querySelector('#deposit-check'),
+    additionalIncomeItem1 = document.querySelectorAll('.additional_income-item')[0],
+    additionalIncomeItem2 = document.querySelectorAll('.additional_income-item')[1],
+    budgetMonthValue = document.getElementsByClassName('budget_month-value'),
+    budgetDayValue = document.getElementsByClassName('budget_day-value'),
+    expensesMonthValue = document.getElementsByClassName('expenses_month-value'),
+    additionalIncomeValue = document.getElementsByClassName('additional_income-value'),
+    resultAdditionalExpenses = document.getElementsByClassName('result-additional_expenses'),
+    incomePeriodValue = document.getElementsByClassName('income_period-value'),
+    targetMonthValue = document.getElementsByClassName('target_month-value'),
+    salaryAmount = document.querySelector('.salary-amount'),
+    incomeTitle = document.querySelector('input.income-title'),
+    incomeAmount = document.querySelector('.income-amount'),
+    expensesTitle = document.querySelector('input.expenses-title'),
+    expensesAmount = document.querySelector('.expenses-amount'),
+    additionalExpensesItem = document.querySelector('.additional_expenses-item'),
+    targetAmount = document.querySelector('.target-amount'),
+    periodSelect = document.querySelector('.period-select');
+
+console.log(calculate, incomeAdd, expensesAdd, depositCheck, additionalIncomeItem1, additionalIncomeItem2, budgetMonthValue, budgetDayValue, expensesMonthValue, additionalIncomeValue, resultAdditionalExpenses, incomePeriodValue, targetMonthValue, salaryAmount, incomeTitle, incomeAmount, expensesTitle, expensesAmount, additionalExpensesItem, targetAmount, periodSelect);
 
 let appData = {
   budget: +money,
