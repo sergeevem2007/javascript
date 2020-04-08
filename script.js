@@ -25,6 +25,7 @@ let collection = document.querySelector('.books'),
     chapter[50].after(chapter[48]);
     chapter[49].before(chapter[55]);
     chapter[7].after(chapter[2]);
+    chapter[7].after(chapter[9]);
     chapter[54].before(chapter[51]);
 
     newChapter.textContent = 'Глава 8: За пределами ES6';
