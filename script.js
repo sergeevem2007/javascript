@@ -7,6 +7,8 @@ let collection = document.querySelector('.books'),
     advertising = document.querySelector('.adv'),
     chapter = document.querySelectorAll('li'),
     newChapter = document.createElement('li');
+
+    console.log(chapter);
     
     collection.prepend(book[1]);
     book[0].after(book[4]);
@@ -22,6 +24,8 @@ let collection = document.querySelector('.books'),
     chapter[6].after(chapter[8]);
     chapter[50].after(chapter[48]);
     chapter[49].before(chapter[55]);
+    chapter[7].after(chapter[2]);
+    chapter[54].before(chapter[51]);
 
     newChapter.textContent = 'Глава 8: За пределами ES6';
     chapter[25].append(newChapter);
