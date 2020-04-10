@@ -50,10 +50,11 @@ let appData = {
     appData.getIncome();
     appData.getExpensesMonth();
     appData.getInfoDeposit();
+    appData.getBudget();
     appData.calcSaveMoney();
     appData.getAddExpenses();
     appData.getAddIncome();
-    appData.getBudget();
+    
 
     appData.showResult();
   },
@@ -68,7 +69,7 @@ let appData = {
     additionalExpensesValue.value = appData.addExpenses.join(', ');
     additionalIncomeValue.value = appData.addIncome.join(', ');
     targetMonthValue.value = appData.getTargetMonth();
-    // incomePeriodValue.value = appData.calcSaveMoney();
+    incomePeriodValue.value = appData.calcSaveMoney();
   },
   addExpensesBlock: function() {
     let cloneExpensesItem = expensesItems[0].cloneNode(true);
