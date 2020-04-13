@@ -45,19 +45,19 @@ let appData = {
   moneyDeposit: 0,
   start: function() {
     this.budget = +salaryAmount.value;
-    this.getExpenses();
-    this.getIncome();
-    this.getExpensesMonth();
-    this.getInfoDeposit();
-    this.getBudget();
-    this.getAddExpenses();
-    this.getAddIncome();
-    this.calcSaveMoney();
+    this.getExpenses.apply(appData);
+    this.getIncome.apply(appData);
+    this.getExpensesMonth.apply(appData);
+    this.getInfoDeposit.apply(appData);
+    this.getBudget.apply(appData);
+    this.getAddExpenses.apply(appData);
+    this.getAddIncome.apply(appData);
+    this.calcSaveMoney.apply(appData);
 
     this.showResult();
   },
   showResult: function() {
-    
+    console.log(this);
     budgetMonthValue.value = this.budgetMonth;
     budgetDayValue.value = this.budgetDay;
     expensesMonthValue.value = this.expensesMonth;
@@ -118,8 +118,8 @@ let appData = {
         appData.income[itemIncome] = cashIncome;
       }
     });
-    for (let key in appData.income) {
-      appData.incomeMonth += +appData.income[key];
+    for (let key in this.income) {
+      this.incomeMonth += +this.income[key];
     }
   },
   getAddExpenses: function() {
@@ -146,7 +146,6 @@ let appData = {
     return this.expensesMonth;
   },
   getBudget: function() {
-    console.log('this1',this);
     this.budgetMonth = this.budget + this.incomeMonth - this.expensesMonth;
     this.budgetDay = Math.floor(this.budgetMonth / 30);
     return this.budgetMonth , this.budgetDay;
@@ -201,10 +200,19 @@ let appData = {
       allInput[i].value = '';
       allInput[i].disabled = '';
     }
-    appData.deleteExpensesBlock();
-    appData.deleteIncomeBlock();
+    this.deleteExpensesBlock();
+    this.deleteIncomeBlock();
     periodSelect.value = 1;
-    appData.budgetMonth = 0;
+    this.budgetMonth = 0;
+    this.budgetDay = 0;
+    this.expensesMonth = 0;
+    this.incomeMonth = 0;
+    this.income = {};
+    this.addIncome = [];
+    this.expenses = {};
+    this.addExpenses = [];
+    additionalExpensesValue.value = 0;
+    additionalIncomeValue.value = 0;
     periodAmount.innerHTML = '1';
     start.style.display = 'block';
     cancel.style.display = 'none';
@@ -221,9 +229,9 @@ let eventFunc = function (event) {
 
 
 let eventFunc2 = function (event) { 
-  incomePeriodValue.value = appData.calcSaveMoney();
+  incomePeriodValue.value = this.calcSaveMoney();
 }
-periodSelect.addEventListener('input', eventFunc2);
+periodSelect.addEventListener('input', eventFunc2.bind(appData));
 
 
 salaryAmount.addEventListener('input', function () {
@@ -232,32 +240,32 @@ salaryAmount.addEventListener('input', function () {
   }
 });
 start.addEventListener('click', appData.start.bind(appData));
-start.addEventListener('click', appData.changeButton);
-cancel.addEventListener('click', appData.reset);
+start.addEventListener('click', appData.changeButton.bind(appData));
+cancel.addEventListener('click', appData.reset.bind(appData));
 
-expensesAdd.addEventListener('click', appData.addExpensesBlock);
-incomeAdd.addEventListener('click', appData.addIncomeBlock);
-periodSelect.addEventListener('input', eventFunc);
+expensesAdd.addEventListener('click', appData.addExpensesBlock.bind(appData));
+incomeAdd.addEventListener('click', appData.addIncomeBlock.bind(appData));
+periodSelect.addEventListener('input', eventFunc.bind(appData));
 
 
-console.log('Наша программа включает в себя данные:');
-for (let key in appData) {
-  console.log(key + ': ' + appData[key]);
-  if (key === 'income') {
-    for (let item in appData.income) {
-      console.log(item + ': ' + appData.income[item]);
-    }
-  }
-  if (key === 'expenses') {
-    for (let value in appData.expenses) {
-      console.log(value + ': ' + appData.expenses[value]);
-    }
-  }
-}
+// console.log('Наша программа включает в себя данные:');
+// for (let key in appData) {
+//   console.log(key + ': ' + appData[key]);
+//   if (key === 'income') {
+//     for (let item in appData.income) {
+//       console.log(item + ': ' + appData.income[item]);
+//     }
+//   }
+//   if (key === 'expenses') {
+//     for (let value in appData.expenses) {
+//       console.log(value + ': ' + appData.expenses[value]);
+//     }
+//   }
+// }
 
-for (let i = 1; i < appData.addExpenses.length ; i++) {
-  appData.addExpenses[0] = appData.addExpenses[0].charAt(0).toUpperCase()+appData.addExpenses[0].slice(1);
-  appData.addExpenses[i] = ' ' + appData.addExpenses[i].charAt(0).toUpperCase()+appData.addExpenses[i].slice(1);
-}
-let a = appData.addExpenses.toString();
-console.log(a);
+// for (let i = 1; i < appData.addExpenses.length ; i++) {
+//   appData.addExpenses[0] = appData.addExpenses[0].charAt(0).toUpperCase()+appData.addExpenses[0].slice(1);
+//   appData.addExpenses[i] = ' ' + appData.addExpenses[i].charAt(0).toUpperCase()+appData.addExpenses[i].slice(1);
+// }
+// let a = appData.addExpenses.toString();
+// console.log(a);
