@@ -114,7 +114,7 @@ let appData = {
       let itemIncome = item.querySelector('.income-title').value;
       let cashIncome = item.querySelector('.income-amount').value;
       if (itemIncome !== '' && cashIncome !== '') {
-        appData.income[itemIncome] = cashIncome;
+        this.income[itemIncome] = cashIncome;
       }
     }, this);
     for (let key in this.income) {
@@ -134,9 +134,9 @@ let appData = {
     additionalIncomeItem.forEach(function(item) {
       let itemValue = item.value.trim();
       if (itemValue !== '') {
-        appData.addIncome.push(itemValue);
+        this.addIncome.push(itemValue);
       }
-    });
+    }, this);
   },
   getExpensesMonth: function() {
     for (let key in this.expenses) {
@@ -149,7 +149,7 @@ let appData = {
     this.budgetDay = Math.floor(this.budgetMonth / 30);
     return this.budgetMonth , this.budgetDay;
   },
-  getTargetMonth : function() {
+  getTargetMonth: function() {
     let result = Math.ceil( targetAmount.value / this.budgetMonth );
     if (result <= 0) {
       return ('Цель не будет достигнута');
