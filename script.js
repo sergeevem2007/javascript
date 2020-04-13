@@ -57,7 +57,6 @@ let appData = {
     this.showResult();
   },
   showResult: function() {
-    console.log(this);
     budgetMonthValue.value = this.budgetMonth;
     budgetDayValue.value = this.budgetDay;
     expensesMonthValue.value = this.expensesMonth;
