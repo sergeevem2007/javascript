@@ -240,7 +240,7 @@ AppData.prototype.eventListeners = function() {
 
   expensesAdd.addEventListener('click', this.addExpensesBlock.bind(this));
   incomeAdd.addEventListener('click', this.addIncomeBlock.bind(this));
-  periodSelect.addEventListener('input', eventFunc());
+  periodSelect.addEventListener('input', eventFunc.bind(this));
   salaryAmount.addEventListener('input', function () {
     if (salaryAmount.value !== '') {
       start.disabled = ''; 
