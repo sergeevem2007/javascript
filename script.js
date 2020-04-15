@@ -23,7 +23,7 @@ const start = document.getElementById('start'),
       targetMonthValue = document.getElementsByClassName('target_month-value')[0],
       salaryAmount = document.querySelector('.salary-amount'),
       expensesTitle = document.querySelector('input.expenses-title'),
-      additionalExpensesItem = document.querySelector('.additional_expenses-item'),
+      additionalExpensesItem = document.querySelectorAll('.additional_expenses-item'),
       targetAmount = document.querySelector('.target-amount'),
       periodSelect = document.querySelector('.period-select'),
       periodAmount = document.querySelector('.period-amount');
@@ -48,7 +48,7 @@ class AppData {
   }
   start() {
     this.budget = +salaryAmount.value;
-    this.getExpInc()
+    this.getExpInc();
     this.getExpensesMonth();
     this.getInfoDeposit();
     this.getBudget();
@@ -102,24 +102,25 @@ class AppData {
       this.incomeMonth += +this.income[key];
     }
   }
-  getAddExpenses() {
-    const addExpenses = additionalExpensesItem.value.split(',');
-    addExpenses.forEach( item => {
-      item = item.trim();
-      if (item !== '') {
-        this.addExpenses.push(item);
-      }
-      });
-  }
-  getAddIncome() {
-    additionalIncomeItem.forEach( item => {
-      const itemValue = item.value.trim();
-      if (itemValue !== '') {
-        this.addIncome.push(itemValue);
-      }
-    });
-  }
   getAddExpInc() {
+    const parse = item => {
+      console.log(item);
+      if (item.classList.contains('additional_expenses-item')) {
+        const itemValue = item.value.split(',');
+        for (let i = 0; i < itemValue.length; i++) {
+          if (itemValue[i] !== '') {
+            this.addExpenses.push(itemValue[i]);
+          }
+        }
+      } else if (item.classList.contains('additional_income-item')) {
+        const itemValue2 = item.value.trim();
+        if (itemValue2 !== '') {
+          this.addIncome.push(itemValue2);
+        }
+      }     
+    };
+    additionalExpensesItem.forEach(parse);
+    additionalIncomeItem.forEach(parse);
   }
   getExpensesMonth() {
     for (let key in this.expenses) {
