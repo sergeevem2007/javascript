@@ -89,6 +89,8 @@ class AppData {
         }
       }
     }
+    incomeItems = document.querySelectorAll('.income-items');
+    expensesItems = document.querySelectorAll('.expenses-items');
     deleteFunc(incomeItems);
     deleteFunc(expensesItems);
   }
