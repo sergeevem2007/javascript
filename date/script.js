@@ -30,8 +30,12 @@ const getDay = function(){
 getDay();
 
 const getTime = function(){
+  let newDate = new Date();
   time.textContent = newDate.toLocaleTimeString('en');
+  setInterval(getTime, 1000);
 }
+
+
 getTime();
 
 const getCount = function(){
