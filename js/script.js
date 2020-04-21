@@ -34,4 +34,15 @@ window.addEventListener('DOMContentLoaded', function(){
     updateClock();
   }
   countTimer('1 may 2020');
+
+  // Menu
+  const toggleMenu = () =>{
+    const btnMenu = document.querySelector('.menu'),
+          menu = document.querySelector('menu');
+
+    btnMenu.addEventListener('click', () =>{
+
+    });
+  };
+  toggleMenu();
 });
