@@ -61,13 +61,16 @@ window.addEventListener('DOMContentLoaded', function(){
       elem.addEventListener('click', () =>{
         popup.style.display = 'block';
         if (screen.width > 768) {
-          let count = 0,
+          let countTop = 0,
+              countOpacity = 0,
               moveInterval,
           moveAnimate = function(){
             moveInterval = requestAnimationFrame(moveAnimate);
-            count++;
-            if (count < 11) {
-              popupContent.style.top = count + '%';
+            countOpacity += 0.03;
+            countTop += 0.3;
+            if (countTop <= 10 && countOpacity <= 1) {
+              popupContent.style.top = countTop + '%';
+              popupContent.style.opacity = countOpacity;
             } else {
             cancelAnimationFrame(moveInterval);
             }
