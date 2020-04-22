@@ -66,8 +66,8 @@ window.addEventListener('DOMContentLoaded', function(){
           moveAnimate = function(){
             moveInterval = requestAnimationFrame(moveAnimate);
             count++;
-            if (count < 39) {
-              popupContent.style.left = count + '%';
+            if (count < 11) {
+              popupContent.style.top = count + '%';
             } else {
             cancelAnimationFrame(moveInterval);
             }
