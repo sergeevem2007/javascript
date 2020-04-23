@@ -155,7 +155,6 @@ window.addEventListener('DOMContentLoaded', function(){
     };
     const startSlide = (time) => {
       interval = setInterval(autoPlaySlide, time);
-      console.log(time);
     };
     const stopSlide = () => {
       clearInterval(interval);
@@ -176,12 +175,13 @@ window.addEventListener('DOMContentLoaded', function(){
         dot.forEach((elem, index) =>{
           if (elem === target) {
             currentSlide = index;
+            console.log(index);
           }
         });
       }
       if (currentSlide >= slide.length) {
         currentSlide = 0;
-      } else if (currentSlide <= 0) {
+      } else if (currentSlide < 0) {
         currentSlide = slide.length - 1;
       }
       nextSlide(slide, currentSlide, 'portfolio-item-active');
@@ -190,14 +190,12 @@ window.addEventListener('DOMContentLoaded', function(){
     slider.addEventListener('mouseover', (event) =>{
       if (event.target.matches('.portfolio-btn') ||
       event.target.matches('.dot')) {
-        console.log(1)
         stopSlide();
       }
     });
     slider.addEventListener('mouseout', (event) =>{
       if (event.target.matches('.portfolio-btn') ||
       event.target.matches('.dot')) {
-        console.log(2);
         startSlide(1500);
       }
     });
