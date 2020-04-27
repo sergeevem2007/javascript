@@ -2,38 +2,37 @@ window.addEventListener('DOMContentLoaded', function(){
   'use strict';
 
   // Timer
-  function countTimer(deadline){
+  const countTimer = (deadline) =>{
     let timerHours = document.querySelector('#timer-hours'),
         timerMinutes = document.querySelector('#timer-minutes'),
-        timerSeconds = document.querySelector('#timer-seconds');
+        timerSeconds = document.querySelector('#timer-seconds'),
+        dateStop = new Date(deadline).getTime();
 
-    function getTimeRemaining(){
-      let dateStop = new Date(deadline).getTime(),
-          dateNow = new Date().getTime(),
-          timeRemaining = (dateStop - dateNow) / 1000,
-          seconds = Math.floor(timeRemaining % 60),
+    const getTimeRemaining = () =>{
+      
+      let dateNow = new Date().getTime(),
+          timeRemaining = (dateStop - dateNow) / 1000;
+          while (timeRemaining <= 0) {
+            dateStop += 86400000;
+            timeRemaining = (dateStop - dateNow) / 1000;
+          }
+      let seconds = Math.floor(timeRemaining % 60),
           minutes = Math.floor((timeRemaining / 60) % 60),
           hours = Math.floor(timeRemaining / 60 / 60);
           return {timeRemaining, hours, minutes, seconds};
     }
-    function updateClock(){
+    const updateClock = () =>{
       let timer = getTimeRemaining();
       timer.hours < 10 ? timerHours.textContent = '0' + timer.hours : timerHours.textContent = timer.hours;
       timer.minutes < 10 ? timerMinutes.textContent = '0' + timer.minutes : timerMinutes.textContent = timer.minutes;
       timer.seconds < 10 ? timerSeconds.textContent = '0' + timer.seconds : timerSeconds.textContent = timer.seconds;
-      
-      if (timer.timeRemaining > 0) {
-        setInterval(updateClock, 1000);
-      } else {
-        timerHours.textContent = '00';
-        timerMinutes.textContent = '00';
-        timerSeconds.textContent = '00';
-      }
+      return timer.timeRemaining;
     }
-    
-    updateClock();
+    if (updateClock() > 0) {
+      setInterval(updateClock, 1000);
+    }
   }
-  countTimer('1 may 2020');
+  countTimer('27 april 2020 19:45:00');
 
   // Menu
   const toggleMenu = () =>{
@@ -207,7 +206,7 @@ window.addEventListener('DOMContentLoaded', function(){
   const validateForm = () => {
     const input = document.querySelectorAll('.calc-block>input');
     for (let i = 0; i < input.length; i++) {
-      input[i].addEventListener('keyup', () => {
+      input[i].addEventListener('input', () => {
         input[i].value = input[i].value.replace(/[^\d]/g, '');
       });
     }
@@ -256,6 +255,7 @@ window.addEventListener('DOMContentLoaded', function(){
       }
       if (typeValue && squareValue) {
         total = price * typeValue * squareValue * countValue * dayValue;
+        total = Math.ceil(total);
       }
       totalValue.textContent = total;
     };
