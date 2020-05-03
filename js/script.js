@@ -275,60 +275,33 @@ window.addEventListener('DOMContentLoaded', function(){
           successMesage = 'Спасибо! Мы скоро с вами свяжемся!';
     const form1 = document.getElementById('form1'),
           form2 = document.getElementById('form2'),
-          form3 = document.getElementById('form3');
+          form3 = document.getElementById('form3'),
+          form = [form1, form2, form3];
     const statusMessage = document.createElement('div');
-    statusMessage.style.cssText = 'font-size: 2rem';
-    form1.addEventListener('submit', (event) =>{
-      event.preventDefault();
-      form1.appendChild(statusMessage);
-      statusMessage.textContent = loadMessage;
-      const formData = new FormData(form1);
-      let body = {};
-      for (let value of formData.entries()) {
-        body[value[0]] = value[1];
-      }
-      postData(body , () => {
-        statusMessage.textContent = successMesage;
-        clearInput(form1);
-      }, (error) => {
-        statusMessage.textContent = errorMesage;
-        console.error(error);
+    statusMessage.style.cssText = `
+    font-size: 2rem;
+    z-index : 1;
+    color : #ffffff;
+    `;
+    form.forEach( (elem , index) => {
+      form[index].addEventListener('submit', (event) =>{
+        event.preventDefault();
+        form[index].appendChild(statusMessage);
+        statusMessage.textContent = loadMessage;
+        const formData = new FormData(form[index]);
+        let body = {};
+        for (let value of formData.entries()) {
+          body[value[0]] = value[1];
+        }
+        postData(body , () => {
+          statusMessage.textContent = successMesage;
+          clearInput(form[index]);
+        }, (error) => {
+          statusMessage.textContent = errorMesage;
+          console.error(error);
+        });
       });
-    });
-    form2.addEventListener('submit', (event) =>{
-      event.preventDefault();
-      form2.appendChild(statusMessage);
-      statusMessage.textContent = loadMessage;
-      const formData = new FormData(form2);
-      let body = {};
-      for (let value of formData.entries()) {
-        body[value[0]] = value[1];
-      }
-      postData(body , () => {
-        statusMessage.textContent = successMesage;
-        clearInput(form2);
-      }, (error) => {
-        statusMessage.textContent = errorMesage;
-        console.error(error);
-      });
-    });
-    form3.addEventListener('submit', (event) =>{
-      event.preventDefault();
-      form3.appendChild(statusMessage);
-      statusMessage.textContent = loadMessage;
-      const formData = new FormData(form3);
-      let body = {};
-      for (let value of formData.entries()) {
-        body[value[0]] = value[1];
-      }
-      postData(body , () => {
-        statusMessage.textContent = successMesage;
-        clearInput(form3);
-      }, (error) => {
-        statusMessage.textContent = errorMesage;
-        console.error(error);
-      });
-    });
+    }); 
     const postData = (body, outputData, errorData) => {
       const request = new XMLHttpRequest();
       request.addEventListener('readystatechange', () =>{
@@ -346,7 +319,6 @@ window.addEventListener('DOMContentLoaded', function(){
       request.send(JSON.stringify(body));
     };
     const clearInput = (target) => {
-      const inputs = target.querySelectorAll('input');
       for (let i = 0; i < target.length; i++) {
         target[i].value = '';
       }
