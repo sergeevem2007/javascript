@@ -270,9 +270,9 @@ window.addEventListener('DOMContentLoaded', function(){
 
   // send-ajax-form
   const sendForm = () => {
-    const errorMesage = 'Что-то пошло не так...',
+    const errorMessage = 'Что-то пошло не так...',
           loadMessage = 'Загрузка...',
-          successMesage = 'Спасибо! Мы скоро с вами свяжемся!';
+          successMessage = 'Спасибо! Мы скоро с вами свяжемся!';
     const form1 = document.getElementById('form1'),
           form2 = document.getElementById('form2'),
           form3 = document.getElementById('form3'),
@@ -293,30 +293,33 @@ window.addEventListener('DOMContentLoaded', function(){
         for (let value of formData.entries()) {
           body[value[0]] = value[1];
         }
-        postData(body , () => {
-          statusMessage.textContent = successMesage;
-          clearInput(form[index]);
-        }, (error) => {
-          statusMessage.textContent = errorMesage;
-          console.error(error);
-        });
+        postData(body)
+          .then(() => {
+            statusMessage.textContent = successMessage;
+            clearInput(form[index]);
+          }, (error) => {
+            statusMessage.textContent = errorMessage;
+            console.error(error)
+          }) 
       });
     }); 
-    const postData = (body, outputData, errorData) => {
-      const request = new XMLHttpRequest();
-      request.addEventListener('readystatechange', () =>{
-        if (request.readyState !== 4) {
-          return;
-        }
-        if (request.status === 200) {
-          outputData();
-        } else {
-          errorData(request.status);
-        }
-      });
-      request.open('POST', './server.php');
-      request.setRequestHeader('Content-Type', 'aplication/json');
-      request.send(JSON.stringify(body));
+    const postData = (body) => {
+      return new Promise((resolve, reject) =>{
+        const request = new XMLHttpRequest();
+        request.addEventListener('readystatechange', () =>{
+          if (request.readyState !== 4) {
+            return;
+          }
+          if (request.status === 200) {
+            resolve('Отправлено');
+          } else {
+            reject(request.status);
+          }
+        });
+        request.open('POST', './server.php');
+        request.setRequestHeader('Content-Type', 'aplication/json');
+        request.send(JSON.stringify(body));
+      });  
     };
     const clearInput = (target) => {
       for (let i = 0; i < target.length; i++) {
