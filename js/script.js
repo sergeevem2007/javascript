@@ -294,32 +294,27 @@ window.addEventListener('DOMContentLoaded', function(){
           body[value[0]] = value[1];
         }
         postData(body)
-          .then(() => {
+          .then((response) => {
+            if (response.status !== 200) {
+              throw new Error('status network not 200')
+            }
             statusMessage.textContent = successMessage;
             clearInput(form[index]);
-          }, (error) => {
+          })
+          .catch((error) => {
             statusMessage.textContent = errorMessage;
             console.error(error)
-          }) 
+          });
       });
     }); 
     const postData = (body) => {
-      return new Promise((resolve, reject) =>{
-        const request = new XMLHttpRequest();
-        request.addEventListener('readystatechange', () =>{
-          if (request.readyState !== 4) {
-            return;
-          }
-          if (request.status === 200) {
-            resolve('Отправлено');
-          } else {
-            reject(request.status);
-          }
-        });
-        request.open('POST', './server.php');
-        request.setRequestHeader('Content-Type', 'aplication/json');
-        request.send(JSON.stringify(body));
-      });  
+      return fetch('./server.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'aplication/json'
+        },
+        body:JSON.stringify(body)
+      });
     };
     const clearInput = (target) => {
       for (let i = 0; i < target.length; i++) {
