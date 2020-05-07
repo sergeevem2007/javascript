@@ -5,7 +5,7 @@ const slider = () => {
   for (let i = 0; i < slide.length; i++) {
     let li = document.createElement('li');
     li.classList.add('dot');
-    dots.append(li);
+    dots.appendChild(li);
   }
   const dot = document.querySelectorAll('.dot');
   let currentSlide = 0,
