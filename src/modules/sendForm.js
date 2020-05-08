@@ -1,23 +1,21 @@
 const sendForm = () => {
   const errorMessage = 'Что-то пошло не так...',
         loadMessage = 'Загрузка...',
-        successMessage = 'Спасибо! Мы скоро с вами свяжемся!';
-  const form1 = document.getElementById('form1'),
-        form2 = document.getElementById('form2'),
-        form3 = document.getElementById('form3'),
-        form = [form1, form2, form3];
-  const statusMessage = document.createElement('div');
+        successMessage = 'Спасибо! Мы скоро с вами свяжемся!',
+        form = document.querySelectorAll('form'),
+        statusMessage = document.createElement('div');
   statusMessage.style.cssText = `
   font-size: 2rem;
   z-index : 1;
   color : #ffffff;
   `;
-  form.forEach( (elem , index) => {
-    form[index].addEventListener('submit', (event) =>{
+  
+  for (let element of form) {
+    element.addEventListener('submit', (event) =>{
       event.preventDefault();
-      form[index].appendChild(statusMessage);
+      element.appendChild(statusMessage);
       statusMessage.textContent = loadMessage;
-      const formData = new FormData(form[index]);
+      const formData = new FormData(element);
       let body = {};
       for (let value of formData.entries()) {
         body[value[0]] = value[1];
@@ -28,16 +26,16 @@ const sendForm = () => {
             throw new Error('status network not 200')
           }
           statusMessage.textContent = successMessage;
-          clearInput(form[index]);
+          clearInput(element);
         })
         .catch((error) => {
           statusMessage.textContent = errorMessage;
           console.error(error)
         });
     });
-  }); 
+  }; 
   const postData = (body) => {
-    return fetch('./server.php', {
+    return fetch('server.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'aplication/json'

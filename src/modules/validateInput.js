@@ -12,18 +12,15 @@ const validateInput = () => {
       let valid = mask.test(target.value);
       if (valid) {
         target.style.border = '';
-        let i = 0;
-        for (i; i < formButtons.length; i++){
+        for (let i = 0; i < formButtons.length; i++){
           formButtons[i].disabled = false;
           }
         } else {
         target.style.border = '2px solid red';
-        let j = 0;
-        for (j; j < formButtons.length; j++){
+        for (let j = 0; j < formButtons.length; j++){
           formButtons[j].disabled = true;
           }
       }
-      
     }
   });
   }
