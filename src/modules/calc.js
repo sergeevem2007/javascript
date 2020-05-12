@@ -24,27 +24,9 @@ const calc = (price = 100) => {
       total = Math.ceil(total);
     };    
     if (total !== 0) {
-      printTotal(0, total);
+      totalValue.textContent = total;
     }
   };
-  const printTotal = (from, to) => {
-    let current = from;
-    let timerId = setInterval(() => {
-      totalValue.textContent = current;
-      if (to != 0 && to >= 6000 && (current+1000) <= to) {
-        current += 1000;
-      } else if ((current+100) <= to) {
-        current += 100;
-      } else if (current+10 <= to) {
-        current += 10;
-      } else if (current < to) {
-        current++;
-      } else if (current == to) {
-        clearInterval(timerId);
-      }
-    }, 20);
-  }
-  
   
   calcBlock.addEventListener('input', (event) => {
     const target = event.target;
