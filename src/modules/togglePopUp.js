@@ -2,7 +2,7 @@ const togglePopUp = () => {
   const popup = document.querySelector('.popup'),
         popupBtn = document.querySelectorAll('.popup-btn'),
         popupContent = popup.querySelector('.popup-content');
-  let screenWidth;
+  let screenWidth = screen.width;
   window.addEventListener('resize', () =>{
     return screenWidth = screen.width;
   });

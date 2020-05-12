@@ -23,10 +23,15 @@ const sendForm = () => {
       postData(body)
         .then((response) => {
           if (response.status !== 200) {
-            throw new Error('status network not 200')
+            throw new Error('status network not 200');
           }
+        })
+        .then( () => {
           statusMessage.textContent = successMessage;
           clearInput(element);
+          setTimeout( () => {
+            statusMessage.textContent = '';
+          }, 5000);
         })
         .catch((error) => {
           statusMessage.textContent = errorMessage;

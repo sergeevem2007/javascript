@@ -25,6 +25,8 @@ const calc = (price = 100) => {
     };    
     if (total !== 0) {
       totalValue.textContent = total;
+    } else {
+      totalValue.textContent = 0;
     }
   };
   
