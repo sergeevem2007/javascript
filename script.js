@@ -1,13 +1,5 @@
 'use strict';
 
-const isNumber = n => {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-    };
-const isNull = n => {
-  return isFinite(n) || n === null;
-    };
-
-
 const start = document.getElementById('start'), 
       cancel = document.getElementById('cancel'),
       incomeAdd = document.getElementsByTagName('button')[0],
@@ -212,7 +204,6 @@ class AppData {
   }
   changePercent() {
     const valueSelect = this.value;
-    console.log(valueSelect);
     if (valueSelect === 'other') {
       depositPercent.style.display = 'inline-block';
       depositPercent.disabled = '';
@@ -237,6 +228,12 @@ class AppData {
       depositBank.removeEventListener('change' , this.changePercent);
     }
   }
+  isNumber(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+  }
+  isNull(n) {
+  return isFinite(n) || n === null;
+  }
   eventListeners() {
     const eventFunc = event => { 
       periodAmount.innerHTML = periodSelect.value;
@@ -259,7 +256,7 @@ class AppData {
     });
     depositPercent.addEventListener('input', () =>{
       if (depositPercent.value !== '') {
-        if (!isNumber(depositPercent.value) || depositPercent.value < 0 || depositPercent.value > 100) {
+        if (!this.isNumber(depositPercent.value) || depositPercent.value < 0 || depositPercent.value > 100) {
           alert('Введите корректное число от 0 до 100');
           depositPercent.value = '';
         }
@@ -274,32 +271,3 @@ class AppData {
 const appData = new AppData();
 
 appData.eventListeners();
-
-console.log(appData);
-
-
-
-
-
-
-// console.log('Наша программа включает в себя данные:');
-// for (let key in appData) {
-//   console.log(key + ': ' + appData[key]);
-//   if (key === 'income') {
-//     for (let item in appData.income) {
-//       console.log(item + ': ' + appData.income[item]);
-//     }
-//   }
-//   if (key === 'expenses') {
-//     for (let value in appData.expenses) {
-//       console.log(value + ': ' + appData.expenses[value]);
-//     }
-//   }
-// }
-
-// for (let i = 1; i < appData.addExpenses.length ; i++) {
-//   appData.addExpenses[0] = appData.addExpenses[0].charAt(0).toUpperCase()+appData.addExpenses[0].slice(1);
-//   appData.addExpenses[i] = ' ' + appData.addExpenses[i].charAt(0).toUpperCase()+appData.addExpenses[i].slice(1);
-// }
-// let a = appData.addExpenses.toString();
-// console.log(a);
